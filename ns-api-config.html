@@ -1,0 +1,25 @@
+<script type="text/javascript">
+    RED.nodes.registerType('ns-api-config',{
+        category: 'config',
+        defaults: {
+            name: {value:"",required:false},
+        },
+        credentials: {
+            api_key: {type:"text"}
+        },
+        label: function() {
+            return this.name || "ns-api-config";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="ns-api-config">
+    <div class="form-row">
+        <label for="node-config-input-name"><i class="icon-bookmark"></i> Name</label>
+        <input type="text" id="node-config-input-name">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-api_key"><i class="icon-key"></i> API-Key</label>
+        <input type="text" id="node-config-input-api_key">
+    </div>
+</script>

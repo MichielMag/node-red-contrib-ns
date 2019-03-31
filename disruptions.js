@@ -1,7 +1,7 @@
 const NS = require('node-ns-api');
 
 module.exports = function(RED) {
-    function NsApiDepartures(config) {
+    function NsApiDisruptions(config) {
         RED.nodes.createNode(this,config);
         var node = this;
         // Retrieve the config node
@@ -18,12 +18,10 @@ module.exports = function(RED) {
         this.makeParameters = function(config, payload) 
         {
             var parameters = {
-                dateTime: null,
-                maxJourneys: null,
+                disruption_type: null,
+                type: null,
+                actual: null,
                 lang: null,
-                station: null,
-                uicCode: null,
-                source: null
             };
 
             // Find all parameter keys in the config and payload
@@ -46,13 +44,7 @@ module.exports = function(RED) {
                 }
             }
 
-            if (parameters.maxJourneys !== null) {
-                try {
-                    parameters.maxJourneys = parseInt(parameters.maxJourneys);
-                } catch(ex) {
-                    parameters.maxJourneys = null;
-                }
-            }
+            parameters.type = parameters.disruption_type;
 
             return parameters;
         };
@@ -65,9 +57,9 @@ module.exports = function(RED) {
             }
 
             var parameters = this.makeParameters(this.config, msg.payload);
-
+            node.send(parameters);
             try {
-                this.api.getDepartures(parameters)
+                this.api.getDisruptions(parameters)
                     .then((result) => {
                         msg.payload = result;
                         node.send(msg);
@@ -81,5 +73,5 @@ module.exports = function(RED) {
             }
         });
     }
-    RED.nodes.registerType("departures",NsApiDepartures);
+    RED.nodes.registerType("disruptions",NsApiDisruptions);
 }

@@ -1,24 +1,24 @@
 <script type="text/javascript">
-    RED.nodes.registerType('arrivals',{
+    RED.nodes.registerType('disruptions',{
         category: 'NS',
         color: '#ffcc26',
         defaults: {
             name: {value:""},
             api_key: {value:"", type: 'ns-api-config', required:true},
-            type: {value:""},
+            disruption_type: {value:""},
             actual: {value:true},
             lang: {value:""}
         },
         inputs:1,
         outputs:1,
-        icon: "arrival.png",
+        icon: "disruption.png",
         label: function() {
-            return this.name||"arrivals";
+            return this.name||"disruptions";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="arrivals">
+<script type="text/x-red" data-template-name="disruptions">
     <div class="form-row">
         <label for="node-input-name"><i class="icon-key"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -28,8 +28,8 @@
         <input type="text" id="node-input-api_key" placeholder="API-Key">
     </div>
     <div class="form-row">
-        <label for="node-input-type"><i class="icon-key"></i> Type</label>
-        <select id="node-input-type">
+        <label for="node-input-disruption_type"><i class="icon-key"></i> Type</label>
+        <select id="node-input-disruption_type">
             <option value="">Both</option>
             <option value="storing">Disruption</option>
             <option value="werkzaamheid">Maintenance</option>
@@ -45,12 +45,12 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="arrivals">
+<script type="text/x-red" data-help-name="disruptions">
     <p>Arrival times for a specified station. Either the UIC code or station is required. Other fields are optional</p>
     <p>You can either fill them in in the settings or provide them in <code>msg.payload</code></p>
     <p><code>msg.payload</code> will overwrite the node-settings.</p>
     <dl class="message-properties">
-        <dt class="optional">type
+        <dt class="optional">disruption_type
             <span class="property-type">string</span>
         </dt>
         <dd> Type of the disruptions. If not present both will be returned. Can be either <code>storing</code> (disruption) or <code>werkzaamheid</code> (maintenance) </dd>

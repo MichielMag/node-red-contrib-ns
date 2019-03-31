@@ -4,11 +4,17 @@
         color: '#ffcc26',
         defaults: {
             name: {value:""},
-            api_key: {value:"", type: 'ns-api-config', required:true}
+            api_key: {value:"", type: 'ns-api-config', required:true},
+            dateTime: {value:""},
+            maxJourneys: {value:25},
+            lang: {value:""},
+            station: {value:""},
+            uicCode: {value:""},
+            source: {value:""}
         },
         inputs:1,
         outputs:1,
-        icon: "NS.png",
+        icon: "arrival.png",
         label: function() {
             return this.name||"arrivals";
         }
@@ -24,8 +30,61 @@
         <label for="node-input-api_key"><i class="icon-key"></i> API-Key</label>
         <input type="text" id="node-input-api_key" placeholder="API-Key">
     </div>
+    <div class="form-row">
+        <label for="node-input-dateTime"><i class="icon-key"></i> DateTime</label>
+        <input type="text" id="node-input-dateTime" placeholder="Return departures or arrivals starting at a given dateTime in ISO8601. Defaults to current time">
+    </div>
+    <div class="form-row">
+        <label for="node-input-maxJourneys"><i class="icon-key"></i> Max journeys</label>
+        <input type="text" id="node-input-maxJourneys" placeholder="Number of arrivals to return">
+    </div>
+    <div class="form-row">
+        <label for="node-input-lang"><i class="icon-key"></i> Language</label>
+        <input type="text" id="node-input-lang" placeholder="Language to use for translatable messages. Note that not all messages are translated.">
+    </div>
+    <div class="form-row">
+        <label for="node-input-station"><i class="icon-key"></i> Station</label>
+        <input type="text" id="node-input-station" placeholder="Specify a station by NS abbreviation/code (e.g. ASD or UT)">
+    </div>
+    <div class="form-row">
+        <label for="node-input-uicCode"><i class="icon-key"></i> UIC Code</label>
+        <input type="text" id="node-input-uicCode" placeholder="Specify a station by UIC code (84xxxxx)">
+    </div>
+    <div class="form-row">
+        <label for="node-input-source"><i class="icon-key"></i> Source</label>
+        <input type="text" id="node-input-source" placeholder="Forces to use a certain source">
+    </div>
 </script>
 
 <script type="text/x-red" data-help-name="arrivals">
-    <p>Arrival times for a specified station. Either the UIC code or station is required</p>
+    <p>Arrival times for a specified station. Either the UIC code or station is required. Other fields are optional</p>
+    <p>You can either fill them in in the settings or provide them in <code>msg.payload</code></p>
+    <p><code>msg.payload</code> will overwrite the node-settings.</p>
+    <dl class="message-properties">
+        <dt class="optional">dateTime
+            <span class="property-type">string</span>
+        </dt>
+        <dd> Format - date-time (as date-time in RFC3339). return departures or arrivals starting at a given dateTime in ISO8601. </dd>
+        <dt class="optional">maxJourneys
+            <span class="property-type">number</span>
+        </dt>
+        <dd> Format - int32. number of departures or arrivals to return. </dd>
+        <dt class="optional">lang
+            <span class="property-type">string</span>
+        </dt>
+        <dd> language to use for translatable messages. Note that not all messages are translated. </dd>
+        <dt class="optional">station
+            <span class="property-type">string</span>
+        </dt>
+        <dd> specify a station by NS abbreviation/code (e.g. ASD or UT). </dd>
+        <dt class="optional">uicCode
+            <span class="property-type">string</span>
+        </dt>
+        <dd> specify a station by UIC code (84xxxxx). </dd>
+        <dt class="optional">source
+            <span class="property-type">string</span>
+        </dt>
+        <dd> forces to use a certain source. </dd>
+    </dl>
+    
 </script>

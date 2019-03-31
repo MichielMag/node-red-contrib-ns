@@ -31,7 +31,10 @@
     "nodes": {
       "ns-api-config": "ns-api-config.js",
       "stations": "stations.js",
-      "arrivals": "arrivals.js"
+      "arrivals": "arrivals.js",
+      "departures": "departures.js",
+      "big departures": "big-departures.js",
+      "disruptions": "disruptions.js"
     }
   }
 }

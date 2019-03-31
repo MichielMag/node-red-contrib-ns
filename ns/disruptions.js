@@ -57,7 +57,7 @@ module.exports = function(RED) {
             }
 
             var parameters = this.makeParameters(this.config, msg.payload);
-            node.send(parameters);
+
             try {
                 this.api.getDisruptions(parameters)
                     .then((result) => {

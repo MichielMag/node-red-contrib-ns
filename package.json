@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/MichielMag/node-red-contrib-ns#readme",
   "dependencies": {
-    "node-ns-api": "0.0.2"
+    "node-ns-api": "^0.0.2"
   },
   "files": [
     "ns/**/*"

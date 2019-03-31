@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ns",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A node-red node for communicating the the NS (Dutch Railways) API",
   "main": "dist/index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/MichielMag/node-red-contrib-ns#readme",
   "dependencies": {
-    "node-ns-api": "^0.0.2"
+    "node-ns-api": "0.0.3"
   },
   "files": [
     "ns/**/*"

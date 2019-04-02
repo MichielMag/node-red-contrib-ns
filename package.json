@@ -1,6 +1,6 @@
 {
   "name": "node-red-contrib-ns",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A node-red node for easy communication with the NS (Dutch Railways) API",
   "main": "dist/index.js",
   "scripts": {
